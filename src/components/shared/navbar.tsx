@@ -24,6 +24,7 @@ import { Link } from 'react-router-dom'
 import { useGetCategories } from '@/service/query/useGetCategories'
 import { useForm } from 'react-hook-form'
 import { useRegister } from '@/service/mutation/useRegister'
+import { saveState } from '@/config/local-save'
 const Navbar = () => {
     const { toast } = useToast()
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
@@ -33,6 +34,7 @@ const Navbar = () => {
     const submit = (data: any) => {
         mutate.mutate(data, {
             onSuccess: () => {
+                saveState("user", data)
                 toast({
                     title: "Пользователь успешно вошел в систему",
                     description: "Спасибо за регистрацию на нашей платформе",
