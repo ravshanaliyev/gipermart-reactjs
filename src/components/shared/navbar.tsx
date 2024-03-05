@@ -1,16 +1,51 @@
 import Logo from '@/assets/logo.png'
 import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import {
+    Sheet,
+    SheetClose,
+    SheetContent,
+    SheetDescription,
+    SheetFooter,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet"
 import {
     Dialog,
     DialogContent,
     DialogTrigger,
 } from "@/components/ui/dialog"
+import { ToastAction } from "@/components/ui/toast"
+import { useToast } from "@/components/ui/use-toast"
 import { Heart, Menu, ShoppingCart, UserRound } from 'lucide-react'
 import { Input } from '../ui/input'
 import { Link } from 'react-router-dom'
 import { useGetCategories } from '@/service/query/useGetCategories'
+import { useForm } from 'react-hook-form'
+import { useRegister } from '@/service/mutation/useRegister'
 const Navbar = () => {
+    const { toast } = useToast()
+    const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const { data } = useGetCategories()
+    const mutate = useRegister()
+
+    const submit = (data: any) => {
+        mutate.mutate(data, {
+            onSuccess: () => {
+                toast({
+                    title: "Пользователь успешно вошел в систему",
+                    description: "Спасибо за регистрацию на нашей платформе",
+
+                })
+            },
+            onError: (error) => {
+                console.log(error);
+
+            }
+        })
+        reset()
+    }
     return (
         <div className='flex justify-between items-center w-[1340px] mx-auto my-2'>
             <Link to={'/'} className="w-[90px] h-[50px]">
@@ -40,10 +75,32 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="flex gap-8 items-center">
-                <Link to="/login" className='flex gap-1  flex-col items-center'>
-                    <UserRound className="w-5 h-5" />
-                    <p>Войти</p>
-                </Link>
+
+                <Sheet>
+                    <SheetTrigger asChild>
+                        <div className='flex gap-1  flex-col items-center cursor-pointer'>
+                            <UserRound className="w-5 h-5" />
+                            <p>Войти</p>
+                        </div>
+                    </SheetTrigger>
+                    <SheetContent className='pt-10'>
+                        <SheetHeader>
+                            <SheetTitle>Войти или создать профиль</SheetTitle>
+                            <SheetDescription>
+                                Внесите изменения в свой профиль здесь. Нажмите Авторизоваться, когда закончите.
+                            </SheetDescription>
+                        </SheetHeader>
+                        <form className="grid gap-4 py-4" onSubmit={handleSubmit(submit)}>
+                            <label htmlFor="name">Имя</label>
+                            <Input id="name" {...register('email', { required: true })} placeholder='jack smit' className="col-span-3" />
+                            <label htmlFor="username">Пароль</label>
+                            <Input id="username" {...register('password', { required: true })} placeholder='******' className="col-span-3" />
+                            <SheetClose>
+                                <Button className="col-span-3" type="submit">Авторизоваться</Button>
+                            </SheetClose>
+                        </form>
+                    </SheetContent>
+                </Sheet>
                 <Link to="/liked" className='flex  flex-col items-center gap-1'>
                     <Heart className="w-5 h-5" />
                     <p>Избранное</p>
