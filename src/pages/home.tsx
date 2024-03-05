@@ -4,6 +4,7 @@ import NavTop from '@/components/shared/nav-top'
 import Navbar from '@/components/shared/navbar'
 import Products from '@/components/shared/products'
 import Stock from '@/components/shared/stock'
+import ThreesomeProducts from '@/components/shared/threesome-products'
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
             <Category />
             <Products />
             <Stock />
+            <ThreesomeProducts />
         </div>
     )
 }

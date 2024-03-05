@@ -10,13 +10,13 @@ import {
 import { Button } from "../ui/button"
 import { ShoppingCart } from "lucide-react"
 const Products = () => {
-    const { data } = useGetProducts()
+    const { data: telephones } = useGetProducts("tel")
     return (
         <div className="w-[1440px] mx-auto my-6">
             <h1 className="text-2xl my-4">Смартфоны и планшеты</h1>
             <Carousel className="w-full ">
                 <CarouselContent>
-                    {data?.map((item: any, index: number) => (
+                    {telephones?.map((item: any, index: number) => (
                         <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/6">
                             <div className="p-1">
                                 <Card>
