@@ -3,10 +3,6 @@ import { Button } from "@/components/ui/button"
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Heart, Menu, ShoppingCart, UserRound } from 'lucide-react'
@@ -14,9 +10,7 @@ import { Input } from '../ui/input'
 import { Link } from 'react-router-dom'
 import { useGetCategories } from '@/service/query/useGetCategories'
 const Navbar = () => {
-    const { data, isLoading, isError } = useGetCategories()
-    console.log(data);
-
+    const { data } = useGetCategories()
     return (
         <div className='flex justify-between items-center w-[1340px] mx-auto my-2'>
             <Link to={'/'} className="w-[90px] h-[50px]">
@@ -26,7 +20,7 @@ const Navbar = () => {
                 <div>
                     <Dialog>
                         <DialogTrigger asChild>
-                            <Button variant="outline" className="gap-2 text-[18px] bg-[#FEEE00] font-normal p-4"><Menu className="w-5 h-5" /> Каталог</Button>
+                            <Button variant="outline" className="gap-2 text-[18px] bg-[#FEEE00] font-normal p-4 hover:bg-[#fff45a]"><Menu className="w-5 h-5" /> Каталог</Button>
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-[1000px] p-10  flex flex-wrap items-center justify-between gap-y-[50px]">
                             {

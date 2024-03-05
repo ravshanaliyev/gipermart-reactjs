@@ -1,4 +1,5 @@
 import Banner from '@/components/shared/banner'
+import Category from '@/components/shared/category'
 import NavTop from '@/components/shared/nav-top'
 import Navbar from '@/components/shared/navbar'
 
@@ -8,6 +9,7 @@ const Home = () => {
             <NavTop />
             <Navbar />
             <Banner />
+            <Category />
         </div>
     )
 }

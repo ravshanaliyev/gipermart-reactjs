@@ -7,7 +7,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 const Banner = () => {
-    const { data, isLoading, isError } = useGetBanner()
+    const { data } = useGetBanner()
 
     return (
         <div>
