@@ -1,3 +1,4 @@
+import Banner from '@/components/shared/banner'
 import NavTop from '@/components/shared/nav-top'
 import Navbar from '@/components/shared/navbar'
 
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
             <NavTop />
             <Navbar />
+            <Banner />
         </div>
     )
 }
