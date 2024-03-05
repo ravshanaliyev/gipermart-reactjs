@@ -12,7 +12,11 @@ import {
 import { Heart, Menu, ShoppingCart, UserRound } from 'lucide-react'
 import { Input } from '../ui/input'
 import { Link } from 'react-router-dom'
+import { useGetCategories } from '@/service/query/useGetCategories'
 const Navbar = () => {
+    const { data, isLoading, isError } = useGetCategories()
+    console.log(data);
+
     return (
         <div className='flex justify-between items-center w-[1340px] mx-auto my-2'>
             <Link to={'/'} className="w-[90px] h-[50px]">
@@ -24,19 +28,15 @@ const Navbar = () => {
                         <DialogTrigger asChild>
                             <Button variant="outline" className="gap-2 text-[18px] bg-[#FEEE00] font-normal p-4"><Menu className="w-5 h-5" /> Каталог</Button>
                         </DialogTrigger>
-                        <DialogContent className="sm:max-w-[1087px] sm:h-[600px]">
-                            <DialogHeader>
-                                <DialogTitle>Edit profile</DialogTitle>
-                                <DialogDescription>
-                                    Make changes to your profile here. Click save when you're done.
-                                </DialogDescription>
-                            </DialogHeader>
-                            <div className="grid gap-4 py-4">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa aliquam doloribus unde dicta eligendi quo illum porro libero, consequatur sunt quaerat ducimus, odit facilis animi debitis, dolore veniam odio alias! Esse, dolores consequatur quas rerum doloremque nisi, possimus numquam perferendis quisquam nostrum necessitatibus molestias, ab soluta ipsa laborum quod repellat cupiditate reiciendis beatae. Sunt fugit soluta, itaque assumenda quaerat sapiente, provident dolore atque natus minus repellat quod adipisci consequuntur? Doloremque molestias necessitatibus minus at, eveniet reiciendis quos quae culpa officiis alias. Tempore ipsum quia unde voluptas fuga quasi id, officia exercitationem officiis quisquam, eaque repellendus aut soluta nihil, suscipit iusto?</p>
-                            </div>
-                            <DialogFooter>
-                                <Button type="submit">Save changes</Button>
-                            </DialogFooter>
+                        <DialogContent className="sm:max-w-[1000px] p-10  flex flex-wrap items-center justify-between gap-y-[50px]">
+                            {
+                                data?.map((item: any) => (
+                                    <Link to={`/category/${item?.datakey}`} className='w-[200px] flex flex-col items-center mx-auto' key={item?.id}>
+                                        <img src={item?.img} alt="" />
+                                        <p>{item?.title}</p>
+                                    </Link>
+                                ))
+                            }
                         </DialogContent>
                     </Dialog>
 
