@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux"
 import { addToCart } from "@/redux/slices/cart-slice"
 const Products = () => {
     const dispatch = useDispatch()
-    const { data: telephones } = useGetProducts("tel")
+    const { data } = useGetProducts("all")
     const handleAddToCart = (data: any) => {
         dispatch(addToCart(data))
     }
@@ -22,7 +22,7 @@ const Products = () => {
             <h1 className="text-2xl my-4">Смартфоны и планшеты</h1>
             <Carousel className="w-full ">
                 <CarouselContent>
-                    {telephones?.map((item: any, index: number) => (
+                    {data?.map((item: any, index: number) => (
                         <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/6">
                             <div className="p-1">
                                 <Card>

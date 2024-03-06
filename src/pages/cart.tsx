@@ -22,7 +22,7 @@ export default function Cart() {
                         <div className="flex w-full flex-wrap items-start justify-between gap-8">
                             {cart.map((item: any, i: any) => (
                                 <Card key={i}>
-                                    <CardContent className="flex aspect-square items-center justify-center p-3 flex-col">
+                                    <CardContent className="flex aspect-square items-center justify-center p-3 flex-col w-[250px]">
                                         <img src={item?.img} alt="" />
                                         <h3 className="text-[16px] mt-2">{item?.title}</h3>
                                         <div className="w-full flex justify-between items-center mt-2">
