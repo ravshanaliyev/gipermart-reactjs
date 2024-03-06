@@ -9,8 +9,14 @@ import {
 } from "@/components/ui/carousel"
 import { Button } from "../ui/button"
 import { ShoppingCart } from "lucide-react"
+import { useDispatch } from "react-redux"
+import { addToCart } from "@/redux/slices/cart-slice"
 const Products = () => {
+    const dispatch = useDispatch()
     const { data: telephones } = useGetProducts("tel")
+    const handleAddToCart = (data: any) => {
+        dispatch(addToCart(data))
+    }
     return (
         <div className="w-[1440px] mx-auto my-6">
             <h1 className="text-2xl my-4">Смартфоны и планшеты</h1>
@@ -25,7 +31,7 @@ const Products = () => {
                                         <h3 className="text-[16px] mt-2">{item?.title}</h3>
                                         <div className="w-full flex justify-between items-center mt-2">
                                             <p className="text-[18px]">{item?.price}</p>
-                                            <Button className="bg-[#FEEE00]  hover:bg-[#fff45a] text-[#000000]"><ShoppingCart /></Button>
+                                            <Button onClick={() => handleAddToCart(item)} className="bg-[#FEEE00]  hover:bg-[#fff45a] text-[#000000]"><ShoppingCart /></Button>
                                         </div>
                                     </CardContent>
                                 </Card>
