@@ -24,10 +24,11 @@ import { Link } from 'react-router-dom'
 import { useGetCategories } from '@/service/query/useGetCategories'
 import { useForm } from 'react-hook-form'
 import { useRegister } from '@/service/mutation/useRegister'
-import { saveState } from '@/config/local-save'
+import { loadState, saveState } from '@/config/local-save'
 const Navbar = () => {
+    const user = loadState("user")
     const { toast } = useToast()
-    const { register, handleSubmit, formState: { errors }, reset } = useForm()
+    const { register, handleSubmit, reset } = useForm()
     const { data } = useGetCategories()
     const mutate = useRegister()
 
@@ -43,7 +44,6 @@ const Navbar = () => {
             },
             onError: (error) => {
                 console.log(error);
-
             }
         })
         reset()
@@ -82,7 +82,9 @@ const Navbar = () => {
                     <SheetTrigger asChild>
                         <div className='flex gap-1  flex-col items-center cursor-pointer'>
                             <UserRound className="w-5 h-5" />
-                            <p>Войти</p>
+                            {
+                                user ? <p>{user?.email.split('@')[0]}</p> : <p>Войти</p>
+                            }
                         </div>
                     </SheetTrigger>
                     <SheetContent className='pt-10'>

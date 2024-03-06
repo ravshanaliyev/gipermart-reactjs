@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Stock = () => {
     return (
         <div className='bg-[#FEEE00] p-6 my-6'>
