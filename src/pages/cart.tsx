@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { removeFromCart } from "@/redux/slices/cart-slice"
 import { Trash2 } from "lucide-react"
+import Navbar from "@/components/shared/navbar"
+import NavTop from "@/components/shared/nav-top"
 
 export default function Cart() {
     const { total, totalItems, cart } = useSelector((state: any) => state.cart)
@@ -13,8 +15,10 @@ export default function Cart() {
         dispatch(removeFromCart(data))
     }
     return (
-        <div className="w-[1440px] mx-auto my-6">
-            <h1 className="text-2xl">Your Cart</h1>
+        <div className="w-[1440px] mx-auto ">
+            <NavTop />
+            <Navbar />
+            <h1 className="text-2xl mt-8 mb-4">Your Cart</h1>
             <p className="text-[18px]">{totalItems} Items in cart</p>
             {
                 totalItems > 0
