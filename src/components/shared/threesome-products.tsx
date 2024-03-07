@@ -11,7 +11,7 @@ const ThreesomeProducts = () => {
                         <img className="w-[140px] h-[140px]" src={item?.img} alt="" />
                         <div className="flex flex-col justify-between py-2">
                             <p className="text-[18px]">{item?.title}</p>
-                            <p className="text-[18px]">{item?.price}</p>
+                            <p className="text-[18px]">{item?.price} сум</p>
                         </div>
                     </div>
                 ))}
