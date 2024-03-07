@@ -30,7 +30,7 @@ const Products = () => {
                                         <img className="h-[200px]" src={item?.img} alt="" />
                                         <h3 className="text-[18px] mt-2">{item.title.length > 40 ? item.title.slice(0, 40) + "..." : item.title}</h3>
                                         <div className="w-full flex justify-between items-center mt-2">
-                                            <p className="text-[18px]">{item?.price}</p>
+                                            <p className="text-[18px]">{item?.price} сум</p>
                                             <Button onClick={() => handleAddToCart(item)} className="bg-[#FEEE00]  hover:bg-[#fff45a] text-[#000000]"><ShoppingCart /></Button>
                                         </div>
                                     </CardContent>
