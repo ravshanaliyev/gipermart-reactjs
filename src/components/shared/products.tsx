@@ -24,11 +24,11 @@ const Products = () => {
                 <CarouselContent>
                     {data?.map((item: any, index: number) => (
                         <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/6">
-                            <div className="p-1 h-[320px] ">
+                            <div className="p-1 h-[350px] ">
                                 <Card>
                                     <CardContent className="flex aspect-square items-center justify-center p-3 flex-col">
-                                        <img src={item?.img} alt="" />
-                                        <h3 className="text-[18px] mt-2">{item?.title.slice(0, 18) + "..."}</h3>
+                                        <img className="h-[200px]" src={item?.img} alt="" />
+                                        <h3 className="text-[18px] mt-2">{item.title.length > 40 ? item.title.slice(0, 40) + "..." : item.title}</h3>
                                         <div className="w-full flex justify-between items-center mt-2">
                                             <p className="text-[18px]">{item?.price}</p>
                                             <Button onClick={() => handleAddToCart(item)} className="bg-[#FEEE00]  hover:bg-[#fff45a] text-[#000000]"><ShoppingCart /></Button>
