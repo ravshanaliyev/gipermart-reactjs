@@ -51,7 +51,7 @@ const Navbar = () => {
         reset()
     }
     return (
-        <div className='flex justify-between items-center w-[1340px] mx-auto my-2'>
+        <div className='flex justify-between items-center w-[400px] md:w-[768px] lg:w-[1340px]  mx-auto my-2 p-4'>
             <Link to={'/'} className="w-[90px] h-[50px]">
                 <img src={Logo} alt="" />
             </Link>
@@ -74,11 +74,11 @@ const Navbar = () => {
                     </Dialog>
 
                 </div>
-                <div className="w-[670px]">
+                <div className="w-[670px] hidden lg:block">
                     <Input placeholder="Поиск" className='border-[#857372]' />
                 </div>
             </div>
-            <div className="flex gap-8 items-center">
+            <div className="hidden md:flex gap-8 items-center">
 
                 <Sheet>
                     <SheetTrigger asChild>
@@ -109,7 +109,7 @@ const Navbar = () => {
                 </Sheet>
                 <Link to="/liked" className='flex  flex-col items-center gap-1'>
                     <Heart className="w-5 h-5" />
-                    <p>Избранное</p>
+                    <p className='hidden md:block '>Избранное</p>
                 </Link>
                 <Link to={"/cart"} className='flex  flex-col items-center gap-1'>
                     <div className="relative">
