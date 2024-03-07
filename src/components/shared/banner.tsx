@@ -16,7 +16,7 @@ const Banner = () => {
                     {
                         data?.map((item: any) => (
                             <CarouselItem key={item?.id}>
-                                <img src={item?.img} alt="" />
+                                <img className="h-[120px] md:h-auto" src={item?.img} alt="" />
                             </CarouselItem>
                         ))
                     }
