@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 
 export const useRegister = () => {
     return useMutation({
-        mutationFn: async (data: any) => {
+        mutationFn: (data: any) => {
             return request.post("/users", data).then((res) => res.data);
         }
     });

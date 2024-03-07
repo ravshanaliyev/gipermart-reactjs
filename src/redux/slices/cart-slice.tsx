@@ -10,7 +10,7 @@ const initialState = {
     totalItems: localStorage.getItem("totalItems")
         ? JSON.parse(localStorage.getItem("totalItems") as string)
         : 0,
-    count: 0
+    count: 1
 }
 
 const cartSlice = createSlice({
