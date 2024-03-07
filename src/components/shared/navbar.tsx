@@ -25,7 +25,9 @@ import { useGetCategories } from '@/service/query/useGetCategories'
 import { useForm } from 'react-hook-form'
 import { useRegister } from '@/service/mutation/useRegister'
 import { loadState, saveState } from '@/config/local-save'
+import { useSelector } from 'react-redux'
 const Navbar = () => {
+    const { totalItems } = useSelector((state: any) => state.cart)
     const user = loadState("user")
     const { toast } = useToast()
     const { register, handleSubmit, reset } = useForm()
@@ -110,8 +112,16 @@ const Navbar = () => {
                     <p>Избранное</p>
                 </Link>
                 <Link to={"/cart"} className='flex  flex-col items-center gap-1'>
-                    <ShoppingCart className="w-5 h-5" />
-                    <p>Корзина</p>
+                    <div className="relative">
+                        <div className='flex  flex-col items-center gap-1'>
+                            <ShoppingCart className="w-5 h-5" />
+                            <p>Корзина</p>
+                        </div>
+                        <div className="absolute top-[-5px] right-[5px] w-[18px] h-[18px] rounded-full bg-[#FEEE00] text-[14px] flex justify-center items-center">
+                            {totalItems}
+                        </div>
+                    </div>
+
                 </Link>
             </div>
         </div>

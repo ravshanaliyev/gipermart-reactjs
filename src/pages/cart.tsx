@@ -39,14 +39,14 @@ export default function Cart() {
                                                     <p className="text-[24px]">{item?.price} сум</p>
                                                 </div>
                                                 <div className="flex  gap-2 mt-4 justify-between items-center ">
-                                                    <div>
+                                                    <div className="flex gap-2">
                                                         <Button variant={"outline"} onClick={() => handleRemoveToCart(item.id)} className=" text-white  "><Heart className="text-gray-500" /></Button>
                                                         <Button variant={"outline"} onClick={() => handleRemoveToCart(item.id)} className=""><Trash2 /></Button>
                                                     </div>
-                                                    <div>
-                                                        <Button onClick={() => toggleCard("addToCart", item.id)}>+</Button>
-                                                        {count}
-                                                        <Button onClick={() => toggleCard("removeFromCart", item.id)}>-</Button>
+                                                    <div className="flex gap-1 items-center">
+                                                        <Button variant={"outline"} className="text-[20px] flex items-center justify-center" onClick={() => toggleCard("addToCart", item.id)}>+</Button>
+                                                        <p className="text-[24px]">{count}</p>
+                                                        <Button variant={"outline"} className="text-[28px] flex items-center justify-center" onClick={() => toggleCard("removeFromCart", item.id)}>-</Button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -59,12 +59,12 @@ export default function Cart() {
                             )
                     }
                 </div>
-                <div className="w-1/3 p-4 bg-gray-100 h-[200px]">
+                <div className="w-1/3 p-4 bg-gray-100 h-[253px] rounded-lg">
                     <span className="text-[24px] mb-2 block">В корзине</span>
                     <span className="text-[18px] mb-2">Товаров: {totalItems}</span>
                     <p className="text-red-500">Введите промокод</p>
                     <p className="text-[24px] my-2">{total} сум</p>
-                    <Button className="w-full bg-[#FEEE00]  hover:bg-[#fff45a] text-[#000000]">Оформить заказ</Button>
+                    <Button className="w-full bg-[#FEEE00]  hover:bg-[#fff45a] text-[#000000] text-[18px]">Оформить заказ</Button>
                 </div>
             </div>
         </div>
