@@ -3,7 +3,7 @@ import { useGetProducts } from "@/service/query/useGetProducts"
 const ThreesomeProducts = () => {
     const { data } = useGetProducts("all")
     return (
-        <div className="flex flex-col lg:flex-row md:flex-row md:w-[760px] mx-auto ">
+        <div className="flex flex-col lg:flex-row md:flex-row md:w-[760px] mx-auto lg:w-[1340px]">
             <div className="w-1/3 md:w-1/2">
                 <h3 className="text-[24px] my-2 px-4 md:my-5">Смартфоны и планшеты</h3>
                 {data?.slice(0, 3).map((item: any) => (

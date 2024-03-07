@@ -29,7 +29,7 @@ const LaptopsSection = () => {
                                 <Card>
                                     <CardContent className="flex aspect-square items-center justify-center p-3 flex-col">
                                         <Link to={`/product/${item?.id}`}>
-                                            <img className="w-[100px] md:w-[150px] lg:h-[200px]" src={item?.img} alt="" />
+                                            <img className="w-[100px] md:w-[150px] lg:h-[200px]  lg:w-[200px]" src={item?.img} alt="" />
                                             <h3 className="text-[18px] mt-2">{item.title.length > 40 ? item.title.slice(0, 40) + "..." : item.title}</h3>
                                         </Link>
                                         <div className="w-full flex justify-between items-center mt-2">
