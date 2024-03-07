@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/carousel"
 import { Button } from "../ui/button"
 import { ShoppingCart } from "lucide-react"
+import { Link } from "react-router-dom"
 const LaptopsSection = () => {
     const { data } = useGetLaptops()
     return (
@@ -21,8 +22,10 @@ const LaptopsSection = () => {
                             <div className="p-1 h-[350px]">
                                 <Card>
                                     <CardContent className="flex aspect-square items-center justify-center p-3 flex-col">
-                                        <img src={item?.img} alt="" />
-                                        <h3 className="text-[18px] mt-2">{item.title.length > 40 ? item.title.slice(0, 40) + "..." : item.title}</h3>
+                                        <Link to={`/product/${item?.id}`}>
+                                            <img src={item?.img} alt="" />
+                                            <h3 className="text-[18px] mt-2">{item.title.length > 40 ? item.title.slice(0, 40) + "..." : item.title}</h3>
+                                        </Link>
                                         <div className="w-full flex justify-between items-center mt-2">
                                             <p className="text-[18px]">{item?.price} сум</p>
                                             <Button className="bg-[#FEEE00]  hover:bg-[#fff45a] text-[#000000]"><ShoppingCart /></Button>
