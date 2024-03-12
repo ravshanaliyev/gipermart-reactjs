@@ -1,4 +1,5 @@
 import Banner from '@/components/shared/banner'
+import Brands from '@/components/shared/brands'
 import Category from '@/components/shared/category'
 import LaptopsSection from '@/components/shared/laptops-section'
 import Products from '@/components/shared/products'
@@ -15,6 +16,7 @@ const Home = () => {
             <ThreesomeProducts />
             <Products />
             <LaptopsSection />
+            <Brands />
         </div>
     )
 }
