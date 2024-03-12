@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { addToCart } from "@/redux/slices/cart-slice"
+import { add } from "@/redux/slices/cart-slice"
 import { useGetProducts } from "@/service/query/useGetProducts"
 import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
@@ -9,7 +9,7 @@ const SingleProduct = () => {
     const { id } = useParams()
     const { data } = useGetProducts("all")
     const handleAddToCart = (data: any) => {
-        dispatch(addToCart(data))
+        dispatch(add(data))
     }
     return (
         <div className="w-[1440px] mx-auto my-4">

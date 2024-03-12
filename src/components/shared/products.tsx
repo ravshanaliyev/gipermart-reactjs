@@ -10,13 +10,13 @@ import {
 import { Button } from "../ui/button"
 import { ShoppingCart } from "lucide-react"
 import { useDispatch } from "react-redux"
-import { addToCart } from "@/redux/slices/cart-slice"
+import { add } from "@/redux/slices/cart-slice"
 import { Link } from "react-router-dom"
 const Products = () => {
     const dispatch = useDispatch()
     const { data, isLoading } = useGetProducts("all")
     const handleAddToCart = (data: any) => {
-        dispatch(addToCart(data))
+        dispatch(add(data))
     }
     console.log(isLoading);
 

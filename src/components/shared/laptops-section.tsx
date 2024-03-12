@@ -11,12 +11,12 @@ import { Button } from "../ui/button"
 import { ShoppingCart } from "lucide-react"
 import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
-import { addToCart } from "@/redux/slices/cart-slice"
+import { add } from "@/redux/slices/cart-slice"
 const LaptopsSection = () => {
     const dispatch = useDispatch()
     const { data } = useGetLaptops()
     const handleAddToCart = (data: any) => {
-        dispatch(addToCart(data))
+        dispatch(add(data))
     }
     return (
         <div className="w-[1440px] mx-auto my-6">

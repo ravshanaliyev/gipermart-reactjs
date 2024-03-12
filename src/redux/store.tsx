@@ -1,22 +1,26 @@
-
-import { configureStore, createListenerMiddleware, isAnyOf } from "@reduxjs/toolkit";
-import rootReducers from "./reducers";
-import { addToCart, removeFromCart, totalPrice } from "./slices/cart-slice";
+import {
+    createListenerMiddleware,
+    isAnyOf,
+    configureStore,
+} from "@reduxjs/toolkit";
+import data, { countVal, add, remove } from "./slices/cart-slice";
+import { saveState } from "@/config/local-save";
 
 const storageMiddlware = createListenerMiddleware();
+
 storageMiddlware.startListening({
-    matcher: isAnyOf(addToCart, removeFromCart),
+    matcher: isAnyOf(add, remove),
     effect: (action, api) => {
-        api.dispatch(totalPrice());
+        api.dispatch(countVal());
     },
 });
-
-const store = configureStore({
-    reducer: rootReducers,
+export const store = configureStore({
+    reducer: {
+        data: data,
+    },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: false,
-        }).prepend(storageMiddlware.middleware),
+        getDefaultMiddleware().prepend(storageMiddlware.middleware),
 });
-
-export default store
+store.subscribe(() => {
+    saveState("products", store.getState().data);
+})

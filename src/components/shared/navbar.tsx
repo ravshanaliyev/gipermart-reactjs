@@ -1,12 +1,10 @@
 import Logo from '@/assets/logo.png'
 import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
 import {
     Sheet,
     SheetClose,
     SheetContent,
     SheetDescription,
-    SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
@@ -27,7 +25,7 @@ import { useRegister } from '@/service/mutation/useRegister'
 import { loadState, saveState } from '@/config/local-save'
 import { useSelector } from 'react-redux'
 const Navbar = () => {
-    const { totalItems } = useSelector((state: any) => state.cart)
+    const product = useSelector((state: any) => state.data)
     const user = loadState("user")
     const { toast } = useToast()
     const { register, handleSubmit, reset } = useForm()
@@ -118,7 +116,7 @@ const Navbar = () => {
                             <p>Корзина</p>
                         </div>
                         <div className="absolute top-[-5px] right-[5px] w-[18px] h-[18px] rounded-full bg-[#FEEE00] text-[14px] flex justify-center items-center">
-                            {totalItems}
+                            {/* {totalItems} */}
                         </div>
                     </div>
 

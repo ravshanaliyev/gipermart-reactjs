@@ -9,7 +9,7 @@ import {
 import { Button } from "../components/ui/button"
 import { ShoppingCart } from "lucide-react"
 import { useDispatch } from "react-redux"
-import { addToCart } from "@/redux/slices/cart-slice"
+import { add } from "@/redux/slices/cart-slice"
 import { Link, useParams } from "react-router-dom"
 import { useGetCategoryProducts } from "@/service/query/useGetCategoryProducts"
 const Category = () => {
@@ -17,7 +17,7 @@ const Category = () => {
     const dispatch = useDispatch()
     const { data } = useGetCategoryProducts(category)
     const handleAddToCart = (data: any) => {
-        dispatch(addToCart(data))
+        dispatch(add(data))
     }
     return (
         <div className="w-[1440px] mx-auto my-6">
