@@ -12,7 +12,7 @@ const data = createSlice({
         },
         countVal: (state) => {
             let newcount = 0;
-            state.data.forEach((el: any) => {
+            state.data.forEach(() => {
                 newcount++;
             });
 

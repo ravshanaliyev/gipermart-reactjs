@@ -2,7 +2,7 @@ import { useGetCategories } from '@/service/query/useGetCategories'
 import { Link } from 'react-router-dom'
 
 const Category = () => {
-    const { data, isLoading } = useGetCategories()
+    const { data } = useGetCategories()
     const resmode = true
     return (
         <div className='w-full lg:w-[1340px] mx-auto flex flex-wrap text-center lg:flex-nowrap   gap-2 lg:gap-8  lg:my-6 my-2'>

@@ -8,7 +8,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import { Button } from "../ui/button"
-import { Heart, HeartIcon, ShoppingCart } from "lucide-react"
+import { ShoppingCart } from "lucide-react"
 import { useDispatch, useSelector } from "react-redux"
 import { add } from "@/redux/slices/cart-slice"
 import { Link } from "react-router-dom"

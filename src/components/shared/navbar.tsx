@@ -14,9 +14,8 @@ import {
     DialogContent,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { ToastAction } from "@/components/ui/toast"
 import { useToast } from "@/components/ui/use-toast"
-import { Heart, Menu, ShoppingCart, UserRound } from 'lucide-react'
+import { Menu, ShoppingCart, UserRound } from 'lucide-react'
 import { Input } from '../ui/input'
 import { Link } from 'react-router-dom'
 import { useGetCategories } from '@/service/query/useGetCategories'

@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { add } from "@/redux/slices/cart-slice";
 import { addLike, removeLike } from "@/redux/slices/like-slice";
-import { Heart, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
@@ -25,7 +25,7 @@ const Liked = () => {
             <div className="flex  gap-4">
                 {
                     likedProducts?.data.length > 0 ? (
-                        likedProducts?.data.map((item: any, index: number) => (
+                        likedProducts?.data.map((item: any) => (
                             <div className="p-1 h-[350px] w-[280px]">
                                 <Card>
                                     <CardContent className="flex aspect-square items-center justify-center p-3 flex-col relative">

@@ -11,7 +11,7 @@ const storageMiddlware = createListenerMiddleware();
 
 storageMiddlware.startListening({
     matcher: isAnyOf(add, remove),
-    effect: (action, api) => {
+    effect: (_, api) => {
         api.dispatch(countVal());
     },
 });
