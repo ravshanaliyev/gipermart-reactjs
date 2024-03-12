@@ -5,6 +5,7 @@ import Cart from "./pages/cart"
 import SingleProduct from "./pages/single-product"
 import Navbar from "./components/shared/navbar"
 import NavTop from "./components/shared/nav-top"
+import Liked from "./pages/liked"
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="category/:category" element={<Category />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/liked" element={<Liked />} />
         <Route path="product/:id" element={<SingleProduct />} />
       </Routes>
     </>

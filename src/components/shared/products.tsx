@@ -8,18 +8,28 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import { Button } from "../ui/button"
-import { ShoppingCart } from "lucide-react"
-import { useDispatch } from "react-redux"
+import { Heart, HeartIcon, ShoppingCart } from "lucide-react"
+import { useDispatch, useSelector } from "react-redux"
 import { add } from "@/redux/slices/cart-slice"
 import { Link } from "react-router-dom"
+import { addLike, removeLike } from "@/redux/slices/like-slice"
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
 const Products = () => {
     const dispatch = useDispatch()
+    const likedProducts = useSelector((state: any) => state.like)
     const { data, isLoading } = useGetProducts("all")
     const handleAddToCart = (data: any) => {
         dispatch(add(data))
     }
-    console.log(isLoading);
+    console.log(likedProducts);
 
+
+    const handleLike = (data: any) => {
+        dispatch(addLike(data))
+    }
+    const handleDislike = (data: any) => {
+        dispatch(removeLike(data))
+    }
     return (
         <>
             {
@@ -122,7 +132,21 @@ const Products = () => {
                                 <CarouselItem key={index} className="basis-1/2 md:basis-1/4 lg:basis-1/6">
                                     <div className="p-1 h-[350px] ">
                                         <Card>
-                                            <CardContent className="flex aspect-square items-center justify-center p-3 flex-col">
+                                            <CardContent className="flex aspect-square items-center justify-center p-3 flex-col relative">
+                                                <div className="absolute top-3 right-3">
+                                                    {likedProducts?.data.findIndex((likeproduct: any) => likeproduct.id === item.id) !==
+                                                        -1 ? (
+                                                        <AiFillHeart
+                                                            className="text-red-500 text-2xl"
+                                                            onClick={() => handleDislike(item)}
+                                                        />
+                                                    ) : (
+                                                        <AiOutlineHeart
+                                                            className="text-[#999] text-2xl"
+                                                            onClick={() => handleLike(item)}
+                                                        />
+                                                    )}
+                                                </div>
                                                 <Link to={`/product/${item?.id}`}>
                                                     <img className="w-[100px] md:w-[150px] lg:h-[200px] lg:w-[200px]" src={item?.img} alt="" />
                                                     <h3 className="text-[18px] mt-2">{item.title.length > 40 ? item.title.slice(0, 40) + "..." : item.title}</h3>
