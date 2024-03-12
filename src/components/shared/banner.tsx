@@ -23,12 +23,12 @@ const Banner = () => {
                         </div>
                     </div>
                 ) : (
-                    <Carousel className="w-full ">
+                    <Carousel className="w-full">
                         <CarouselContent>
                             {
                                 data?.map((item: any) => (
                                     <CarouselItem key={item?.id}>
-                                        <img className="h-[120px] md:h-auto" src={item?.img} alt="" />
+                                        <img className="h-[120px] md:h-[450px] object-cover" src={item?.img} alt="" />
                                     </CarouselItem>
                                 ))
                             }
