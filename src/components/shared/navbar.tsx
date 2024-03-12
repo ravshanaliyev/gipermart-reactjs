@@ -24,8 +24,10 @@ import { useForm } from 'react-hook-form'
 import { useRegister } from '@/service/mutation/useRegister'
 import { loadState, saveState } from '@/config/local-save'
 import { useSelector } from 'react-redux'
+import { AiFillHeart } from 'react-icons/ai'
 const Navbar = () => {
     const product = useSelector((state: any) => state.data)
+    const likedProducts = useSelector((state: any) => state.like)
     const user = loadState("user")
     const { toast } = useToast()
     const { register, handleSubmit, reset } = useForm()
@@ -105,9 +107,17 @@ const Navbar = () => {
                         </form>
                     </SheetContent>
                 </Sheet>
-                <Link to="/liked" className='flex  flex-col items-center gap-1'>
-                    <Heart className="w-5 h-5" />
-                    <p className='hidden md:block '>Избранное</p>
+                <Link to={"/liked"} className='flex  flex-col items-center gap-1'>
+                    <div className="relative">
+                        <div className='flex  flex-col items-center gap-1'>
+                            <AiFillHeart className="text-[22px] text-red-500" />
+                            <p className='hidden md:block '>Избранное</p>
+                        </div>
+                        <div className="absolute top-[-5px] right-[15px] w-[18px] h-[18px] rounded-full bg-[#FEEE00] text-[14px] flex justify-center items-center">
+                            {likedProducts?.data.length}
+                        </div>
+                    </div>
+
                 </Link>
                 <Link to={"/cart"} className='flex  flex-col items-center gap-1'>
                     <div className="relative">
@@ -116,7 +126,7 @@ const Navbar = () => {
                             <p>Корзина</p>
                         </div>
                         <div className="absolute top-[-5px] right-[5px] w-[18px] h-[18px] rounded-full bg-[#FEEE00] text-[14px] flex justify-center items-center">
-                            {/* {totalItems} */}
+                            {product?.data.length}
                         </div>
                     </div>
 
