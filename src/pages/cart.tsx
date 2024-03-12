@@ -17,8 +17,7 @@ export default function Cart() {
     }
     return (
         <div className="w-[1440px] mx-auto ">
-            <h1 className="text-2xl mt-8 mb-4">Your Cart</h1>
-            <p className="text-[18px]"> Items in cart</p>
+            <h1 className="text-2xl mt-8 mb-4">Your Products</h1>
             <div className="flex gap-2 w-full">
                 <div className="w-[1000px] mb-4">
                     {
@@ -50,7 +49,9 @@ export default function Cart() {
                                 </div>
                             )
                             : (
-                                <p>Your Cart is empty</p>
+                                <div className="flex justify-center items-center w-full">
+                                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/sorry-item-not-found-3328225-2809510.png" alt="" />
+                                </div>
                             )
                     }
                 </div>
