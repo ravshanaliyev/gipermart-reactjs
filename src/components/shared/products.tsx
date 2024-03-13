@@ -10,13 +10,14 @@ import {
 import { Button } from "../ui/button"
 import { ShoppingCart } from "lucide-react"
 import { useDispatch, useSelector } from "react-redux"
-import { add } from "@/redux/slices/cart-slice"
+import { add, toggleAnmount } from "@/redux/slices/cart-slice"
 import { Link } from "react-router-dom"
 import { addLike, removeLike } from "@/redux/slices/like-slice"
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai"
 const Products = () => {
     const dispatch = useDispatch()
     const likedProducts = useSelector((state: any) => state.like)
+    const cart_products = useSelector((state: any) => state.data)
     const { data, isLoading } = useGetProducts("all")
     const handleAddToCart = (data: any) => {
         dispatch(add(data))
@@ -28,6 +29,9 @@ const Products = () => {
     }
     const handleDislike = (data: any) => {
         dispatch(removeLike(data))
+    }
+    const toggleCard = (type: any, id: any) => {
+        dispatch(toggleAnmount({ id, type }))
     }
     return (
         <>
@@ -129,7 +133,7 @@ const Products = () => {
                         <CarouselContent>
                             {data?.map((item: any, index: number) => (
                                 <CarouselItem key={index} className="basis-1/2 md:basis-1/4 lg:basis-1/6">
-                                    <div className="p-1 h-[350px] ">
+                                    <div className="p-1 h-[400px] ">
                                         <Card>
                                             <CardContent className="flex aspect-square items-center justify-center p-3 flex-col relative">
                                                 <div className="absolute top-3 right-3">
@@ -148,12 +152,34 @@ const Products = () => {
                                                 </div>
                                                 <Link to={`/product/${item?.id}`}>
                                                     <img className="w-[100px] md:w-[150px] lg:h-[200px] lg:w-[200px]" src={item?.img} alt="" />
-                                                    <h3 className="text-[18px] mt-2">{item.title.length > 40 ? item.title.slice(0, 40) + "..." : item.title}</h3>
+                                                    <h3 className="text-[18px] mt-2">{item.title.length > 40 ? item.title.slice(0, 35) + "..." : item.title}</h3>
                                                 </Link>
                                                 <div className="w-full flex justify-between items-center mt-2">
                                                     <p className="text-[18px]">{item?.price} сум</p>
-                                                    <Button onClick={() => handleAddToCart(item)} className="bg-[#FEEE00]  hover:bg-[#fff45a] text-[#000000]"><ShoppingCart /></Button>
+                                                    <p className="bg-red-500 p-1 text-white rounded">-9%</p>
                                                 </div>
+                                                {cart_products?.data.findIndex((cardproduct: any) => cardproduct.id === item.id) !==
+                                                    -1 ? (
+                                                    <div className="flex justify-around gap-4 items-center mt-2">
+                                                        <Button
+                                                            className="bg-[#FEEE00]  hover:bg-[#fff45a] text-[28px]"
+                                                            onClick={() => toggleCard("remove", item.id)}
+                                                        >
+                                                            -
+                                                        </Button>
+                                                        <strong className="mx-6 text-xl">
+                                                            {cart_products?.data.find((cartproduct: any) => cartproduct.id === item.id).count}
+                                                        </strong>
+                                                        <Button
+                                                            className="bg-[#FEEE00]  hover:bg-[#fff45a] text-[24px]"
+                                                            onClick={() => toggleCard("add", item.id)}
+                                                        >
+                                                            +
+                                                        </Button>
+                                                    </div>
+                                                ) : (
+                                                    <Button onClick={() => handleAddToCart(item)} className="bg-[#FEEE00]  hover:bg-[#fff45a] text-[#8a3333] w-full mt-2"><ShoppingCart /></Button>
+                                                )}
                                             </CardContent>
                                         </Card>
                                     </div>

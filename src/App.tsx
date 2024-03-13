@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router-dom"
 import { Suspense, lazy } from "react"
 const Home = lazy(() => import("./pages/home"))
 const Category = lazy(() => import("./pages/category"))
-const Cart = lazy(() => import("./pages/single-product"))
-const SingleProduct = lazy(() => import("./pages/home"))
+const Cart = lazy(() => import("./pages/cart"))
+const SingleProduct = lazy(() => import("./pages/single-product"))
 const NavTop = lazy(() => import("./components/shared/nav-top"))
 const Liked = lazy(() => import("./pages/liked"))
 const Navbar = lazy(() => import("./components/shared/navbar"))
