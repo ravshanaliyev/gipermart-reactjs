@@ -24,7 +24,11 @@ import { useRegister } from '@/service/mutation/useRegister'
 import { loadState, saveState } from '@/config/local-save'
 import { useSelector } from 'react-redux'
 import { AiFillHeart } from 'react-icons/ai'
+import useSearch from '@/service/query/useSearch'
+import useDebounce from '@/config/use-debounce'
+import { useState } from 'react'
 const Navbar = () => {
+    const [searchValue, setSearchValue] = useState("")
     const product = useSelector((state: any) => state.data)
     const likedProducts = useSelector((state: any) => state.like)
     const user = loadState("user")
@@ -32,6 +36,9 @@ const Navbar = () => {
     const { register, handleSubmit, reset } = useForm()
     const { data } = useGetCategories()
     const mutate = useRegister()
+    const title = useDebounce(searchValue)
+    const { data: searchData } = useSearch(title)
+    console.log(searchData);
 
     const submit = (data: any) => {
         mutate.mutate(data, {
@@ -40,7 +47,6 @@ const Navbar = () => {
                 toast({
                     title: "Пользователь успешно вошел в систему",
                     description: "Спасибо за регистрацию на нашей платформе",
-
                 })
             },
             onError: (error) => {
@@ -73,8 +79,23 @@ const Navbar = () => {
                     </Dialog>
 
                 </div>
-                <div className="w-[670px] hidden lg:block">
-                    <Input placeholder="Поиск" className='border-[#857372]' />
+                <div className="w-[670px] hidden lg:block relative z-10">
+                    <Input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder="Поиск" className='border-[#857372]' />
+                    {
+                        searchValue.length > 2 ? (
+                            <div className="absolute top-8 left-0 flex flex-col  mt-4 z-50 rounded-lg shadow-lg bg-white p-5 w-[670px]">
+                                {
+                                    searchData?.map((item: any) => (
+                                        <Link className=' flex gap-4  items-center my-1' key={item.id} to={`/product/${item.id}`}>
+                                            <img className='w-[50px]' src={item.img} alt="" />
+                                            <p>{item.title}</p>
+                                            <p>{item.price} sym</p>
+                                        </Link>
+                                    ))
+                                }
+                            </div>
+                        ) : null
+                    }
                 </div>
             </div>
             <div className="hidden md:flex gap-8 items-center">

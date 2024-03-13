@@ -21,7 +21,6 @@ const Products = () => {
     const handleAddToCart = (data: any) => {
         dispatch(add(data))
     }
-    console.log(likedProducts);
 
 
     const handleLike = (data: any) => {
