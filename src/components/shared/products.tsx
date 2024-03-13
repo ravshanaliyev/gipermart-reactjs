@@ -158,7 +158,7 @@ const Products = () => {
                                                     <p className="text-[18px]">{item?.price} сум</p>
                                                     <p className="bg-red-500 p-1 text-white rounded">-9%</p>
                                                 </div>
-                                                {cart_products?.data.findIndex((cardproduct: any) => cardproduct.id === item.id) !==
+                                                {cart_products?.data?.findIndex((cardproduct: any) => cardproduct.id === item.id) !==
                                                     -1 ? (
                                                     <div className="flex justify-around gap-4 items-center mt-2">
                                                         <Button
@@ -168,7 +168,7 @@ const Products = () => {
                                                             -
                                                         </Button>
                                                         <strong className="mx-6 text-xl">
-                                                            {cart_products?.data.find((cartproduct: any) => cartproduct.id === item.id).count}
+                                                            {cart_products?.data?.find((cartproduct: any) => cartproduct.id === item.id).count}
                                                         </strong>
                                                         <Button
                                                             className="bg-[#FEEE00]  hover:bg-[#fff45a] text-[24px]"

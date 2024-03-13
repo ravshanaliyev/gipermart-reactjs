@@ -1,10 +1,11 @@
+import { loadState } from "@/config/local-save";
 import { createSlice } from "@reduxjs/toolkit";
 
 
 const data = createSlice({
     name: "data",
     initialState: {
-        data: [],
+        data: loadState("data") || [],
     },
     reducers: {
         add: (state: any, action) => {

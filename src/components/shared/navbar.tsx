@@ -145,7 +145,7 @@ const Navbar = () => {
                             <p>Корзина</p>
                         </div>
                         <div className="absolute top-[-5px] right-[5px] w-[18px] h-[18px] rounded-full bg-[#FEEE00] text-[14px] flex justify-center items-center">
-                            {product?.data.length}
+                            {product?.data?.length}
                         </div>
                     </div>
 
