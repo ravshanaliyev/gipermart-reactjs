@@ -1,11 +1,12 @@
 import { Route, Routes } from "react-router-dom"
-import Home from "./pages/home"
-import Category from "./pages/category"
-import Cart from "./pages/cart"
-import SingleProduct from "./pages/single-product"
-import Navbar from "./components/shared/navbar"
-import NavTop from "./components/shared/nav-top"
-import Liked from "./pages/liked"
+import { Suspense, lazy } from "react"
+const Home = lazy(() => import("./pages/home"))
+const Category = lazy(() => import("./pages/category"))
+const Cart = lazy(() => import("./pages/single-product"))
+const SingleProduct = lazy(() => import("./pages/home"))
+const NavTop = lazy(() => import("./components/shared/nav-top"))
+const Liked = lazy(() => import("./pages/liked"))
+const Navbar = lazy(() => import("./components/shared/navbar"))
 
 function App() {
 
@@ -14,11 +15,31 @@ function App() {
       <NavTop />
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="category/:category" element={<Category />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/liked" element={<Liked />} />
-        <Route path="product/:id" element={<SingleProduct />} />
+        <Route path="/" element={
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Home />
+          </Suspense>
+        } />
+        <Route path="category/:category" element={
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Category />
+          </Suspense>
+        } />
+        <Route path="/cart" element={
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Cart />
+          </Suspense>
+        } />
+        <Route path="/liked" element={
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Liked />
+          </Suspense>
+        } />
+        <Route path="product/:id" element={
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <SingleProduct />
+          </Suspense>
+        } />
       </Routes>
     </>
   )
