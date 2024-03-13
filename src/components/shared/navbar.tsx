@@ -28,6 +28,7 @@ import useSearch from '@/service/query/useSearch'
 import useDebounce from '@/config/use-debounce'
 import { useState } from 'react'
 const Navbar = () => {
+    const [open, setOpen] = useState(false)
     const [searchValue, setSearchValue] = useState("")
     const product = useSelector((state: any) => state.data)
     const likedProducts = useSelector((state: any) => state.like)
@@ -80,21 +81,23 @@ const Navbar = () => {
 
                 </div>
                 <div className="w-[670px] hidden lg:block relative z-10">
-                    <Input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder="Поиск" className='border-[#857372]' />
+                    <Input onBlur={() => setOpen(false)} onFocus={() => setOpen(true)} value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder="Поиск" className='border-[#857372]' />
                     {
-                        searchValue.length > 2 ? (
-                            <div className="absolute top-8 left-0 flex flex-col  mt-4 z-50 rounded-lg shadow-lg bg-white p-5 w-[670px]">
-                                {
-                                    searchData?.map((item: any) => (
-                                        <Link className=' flex gap-4  items-center my-1' key={item.id} to={`/product/${item.id}`}>
-                                            <img className='w-[50px]' src={item.img} alt="" />
-                                            <p>{item.title}</p>
-                                            <p>{item.price} sym</p>
-                                        </Link>
-                                    ))
-                                }
-                            </div>
-                        ) : null
+                        open && (
+                            searchValue.length > 2 ? (
+                                <div className="absolute top-8 left-0 flex flex-col  mt-4 z-50 rounded-lg shadow-lg bg-white p-5 w-[670px]">
+                                    {
+                                        searchData?.map((item: any) => (
+                                            <Link className=' flex gap-4  items-center my-1' key={item.id} to={`/product/${item.id}`}>
+                                                <img className='w-[50px]' src={item.img} alt="" />
+                                                <p>{item.title}</p>
+                                                <p>{item.price} sym</p>
+                                            </Link>
+                                        ))
+                                    }
+                                </div>
+                            ) : null
+                        )
                     }
                 </div>
             </div>
